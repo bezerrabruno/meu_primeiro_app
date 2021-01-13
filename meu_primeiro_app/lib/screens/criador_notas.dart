@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meu_primeiro_app/screens/lista_notas.dart';
+import 'package:meu_primeiro_app/components/coletor.dart';
+import 'package:meu_primeiro_app/models/notas.dart';
 
 const _tituloAppBar = 'Criador de notas';
 const _tituloNomeManga = 'Titulo';
@@ -19,16 +20,17 @@ class CriadorNotas extends StatelessWidget {
 
   Widget _tela(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey,
         appBar: _appBar(),
         body: SingleChildScrollView(
             child: Column(
           children: [
-            Editor(
+            Coletor(
               _tituloNomeManga,
               _dicaNomeManga,
               _controladorCampotitulo,
             ),
-            Editor(
+            Coletor(
               _tituloTotalCapitulos,
               _dicaTotalCapitulos,
               _controladorCampodescricao,
@@ -45,7 +47,6 @@ class CriadorNotas extends StatelessWidget {
 
   Widget _appBar() {
     return AppBar(
-      backgroundColor: Colors.black,
       title: Text(_tituloAppBar),
     );
   }
@@ -57,32 +58,5 @@ class CriadorNotas extends StatelessWidget {
       final notacriada = Notas(_titulo, _descricao);
       Navigator.pop(context, notacriada);
     }
-  }
-}
-
-class Editor extends StatelessWidget {
-  final String titulo;
-  final String dica;
-  final TextEditingController controlador;
-
-  Editor(
-    this.titulo,
-    this.dica,
-    this.controlador,
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: TextField(
-        controller: controlador,
-        style: TextStyle(fontSize: 24.0),
-        decoration: InputDecoration(
-          labelText: titulo,
-          hintText: dica,
-        ),
-      ),
-    );
   }
 }

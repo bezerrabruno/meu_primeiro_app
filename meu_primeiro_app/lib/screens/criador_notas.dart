@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_app/components/coletor.dart';
+import 'package:meu_primeiro_app/database/dao/notas_dao.dart';
 import 'package:meu_primeiro_app/models/notas.dart';
+import 'package:meu_primeiro_app/screens/lista_notas.dart';
 
 const _tituloAppBar = 'Criador de notas';
 const _tituloNomeManga = 'Titulo';
@@ -55,8 +57,15 @@ class CriadorNotas extends StatelessWidget {
     final String _titulo = (_controladorCampotitulo.text);
     final String _descricao = (_controladorCampodescricao.text);
     if (_titulo != '' && _descricao != '') {
-      final notacriada = Notas(_titulo, _descricao);
-      Navigator.pop(context, notacriada);
+      final notacriada = Notas(
+        titulo: _titulo,
+        descricao: _descricao,
+      );
+      NotasDao _dao = NotasDao();
+      _dao.save(notacriada);
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return ListaNotas();
+      }));
     }
   }
 }

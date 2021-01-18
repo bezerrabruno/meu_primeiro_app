@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_primeiro_app/database/dao/notas_dao.dart';
 
 import 'package:meu_primeiro_app/models/notas.dart';
 import 'package:meu_primeiro_app/components/card_nota.dart';
@@ -7,7 +8,6 @@ import 'package:meu_primeiro_app/screens/criador_notas.dart';
 const _tituloAppBar = 'Notas';
 
 class ListaNotas extends StatefulWidget {
-  final List<Notas> _notas = List();
   @override
   State<StatefulWidget> createState() {
     return ListaNotasState();
@@ -15,6 +15,7 @@ class ListaNotas extends StatefulWidget {
 }
 
 class ListaNotasState extends State<ListaNotas> {
+  NotasDao _dao = NotasDao();
   @override
   Widget build(BuildContext context) {
     return tela();
@@ -25,13 +26,20 @@ class ListaNotasState extends State<ListaNotas> {
         backgroundColor: Colors.grey,
         appBar: appBar(),
         floatingActionButton: floatbutton(),
-        body: ListView.builder(
-          itemCount: widget._notas.length,
-          itemBuilder: (contex, index) {
-            Notas _nota = widget._notas[index];
-            return CardNota(_nota);
-          },
-        ));
+        body: FutureBuilder<List<Notas>>(
+            future: _dao.findAll(),
+            initialData: List<Notas>(),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+              final List<Notas> _notas = snapshot.data;
+              return ListView.builder(
+                itemCount: _notas.length,
+                itemBuilder: (contex, index) {
+                  final Notas _nota = _notas[index];
+                  return CardNota(_nota);
+                },
+              );
+            }));
   }
 
   Widget appBar() {
@@ -42,18 +50,12 @@ class ListaNotasState extends State<ListaNotas> {
 
   Widget floatbutton() {
     return FloatingActionButton(
-      child: Icon(Icons.add),
-      onPressed: () {
-        final Future<Notas> future =
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return CriadorNotas();
-        }));
-        future.then((notaRecebida) {
-          if (notaRecebida != null) {
-            setState(() => widget._notas.add(notaRecebida));
-          }
+        backgroundColor: Colors.black,
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return CriadorNotas();
+          }));
         });
-      },
-    );
   }
 }

@@ -1,13 +1,11 @@
 class Notas {
+  final int id;
   final String titulo;
   final String descricao;
 
-  static int numeroNotas = 0;
-
-  Notas(
+  Notas({
+    this.id,
     this.titulo,
     this.descricao,
-  ) {
-    numeroNotas++;
-  }
+  });
 }

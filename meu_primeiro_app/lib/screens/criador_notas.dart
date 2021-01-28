@@ -63,9 +63,7 @@ class CriadorNotas extends StatelessWidget {
       );
       NotasDao _dao = NotasDao();
       _dao.save(notacriada);
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return ListaNotas();
-      }));
+      Navigator.pop(context);
     }
   }
 }

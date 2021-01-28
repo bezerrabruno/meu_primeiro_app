@@ -18,14 +18,14 @@ class ListaNotasState extends State<ListaNotas> {
   NotasDao _dao = NotasDao();
   @override
   Widget build(BuildContext context) {
-    return tela();
+    return _tela();
   }
 
-  Widget tela() {
+  Widget _tela() {
     return Scaffold(
         backgroundColor: Colors.grey,
-        appBar: appBar(),
-        floatingActionButton: floatbutton(),
+        appBar: _appBar(),
+        floatingActionButton: _floatbutton(),
         body: FutureBuilder<List<Notas>>(
             future: _dao.findAll(),
             initialData: List<Notas>(),
@@ -42,13 +42,19 @@ class ListaNotasState extends State<ListaNotas> {
             }));
   }
 
-  Widget appBar() {
+  Widget _appBar() {
     return AppBar(
       title: Text(_tituloAppBar),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.refresh),
+          onPressed: () => setState(() {}),
+        )
+      ],
     );
   }
 
-  Widget floatbutton() {
+  Widget _floatbutton() {
     return FloatingActionButton(
         backgroundColor: Colors.black,
         child: Icon(Icons.add),

@@ -30,9 +30,7 @@ class NotasDao {
   Future<List<Notas>> findAll() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> result = await db.query(_tableName);
-    print(result);
     List<Notas> notas = _toList(result);
-    print(notas);
     return notas;
   }
 

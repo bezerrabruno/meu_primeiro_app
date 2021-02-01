@@ -20,6 +20,11 @@ class NotasDao {
     return db.insert(_tableName, notasMap);
   }
 
+  Future delet(int id) async {
+    final Database db = await getDatabase();
+    return db.delete(_tableName, where: 'id = $id');
+  }
+
   Map<String, dynamic> _toMap(Notas notas) {
     final Map<String, dynamic> notasMap = Map();
     notasMap[_titulo] = notas.titulo;

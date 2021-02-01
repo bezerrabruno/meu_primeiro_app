@@ -16,6 +16,7 @@ class ListaNotas extends StatefulWidget {
 
 class ListaNotasState extends State<ListaNotas> {
   NotasDao _dao = NotasDao();
+
   @override
   Widget build(BuildContext context) {
     return _tela();
@@ -61,7 +62,7 @@ class ListaNotasState extends State<ListaNotas> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return CriadorNotas();
-          }));
+          })).then((value) => setState(() {}));
         });
   }
 }

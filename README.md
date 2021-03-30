@@ -1,2 +1,3 @@
 # meu_primeiro_app
-primeiro aplicativo criado 
+Primeiro aplicativo criado.
+Um app de notas, simples.

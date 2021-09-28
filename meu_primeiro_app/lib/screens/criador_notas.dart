@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:meu_primeiro_app/components/coletor.dart';
 import 'package:meu_primeiro_app/database/dao/notas_dao.dart';
 import 'package:meu_primeiro_app/models/notas.dart';
-import 'package:meu_primeiro_app/screens/lista_notas.dart';
 
 const _tituloAppBar = 'Criador de notas';
 const _tituloNomeManga = 'Titulo';
 const _tituloTotalCapitulos = 'Descricao';
-const _dicaNomeManga = 'Vingança';
-const _dicaTotalCapitulos = 'A vingança nunca é ...';
+const _dicaNomeManga = 'Amor';
+const _dicaTotalCapitulos = 'O verdadeiro amor é ...';
 
 class CriadorNotas extends StatelessWidget {
   final TextEditingController _controladorCampotitulo = TextEditingController();

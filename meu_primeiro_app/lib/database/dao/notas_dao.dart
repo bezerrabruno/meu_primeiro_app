@@ -40,7 +40,7 @@ class NotasDao {
   }
 
   List<Notas> _toList(List<Map<String, dynamic>> result) {
-    final List<Notas> notas = List();
+    final List<Notas> notas = [];
     for (Map<String, dynamic> row in result) {
       final Notas mes = Notas(
         id: row[_id],

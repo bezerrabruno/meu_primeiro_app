@@ -29,7 +29,7 @@ class ListaNotasState extends State<ListaNotas> {
         floatingActionButton: _floatbutton(),
         body: FutureBuilder<List<Notas>>(
             future: _dao.findAll(),
-            initialData: List<Notas>(),
+            initialData: [],
             builder:
                 (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
               final List<Notas> _notas = snapshot.data;
